@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Miriro Week5</title>
+    <title>Miriro Week7</title>
     <meta charset="UTF-8" />
     <link
       rel="stylesheet"
@@ -9,7 +9,7 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
-    <link href="src/styles.css" />
+    <link rel="stylesheet" href="src/styles.css" />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script
       src="https://kit.fontawesome.com/a160028d45.js"
@@ -19,32 +19,45 @@
 
   <body>
     <div class="container">
-      <h1>
-        <form id="search-city">
-          <input
-            type="text"
-            id="change-city"
-            placeholder="search for your city"
-          <input type="submit" id="search-button" value="search" />
-          <input type="submit" id="current-city-button" value="current" />
-        </form>
-      </h1>
-      <br />
-      <h2 id="city-name">Harare</h2>
-      <h3 id="date-today">Monday, June 12th 2023</h3>
+      <div class="app-box">
+        <h1>
+          <form id="search-city">
+            <input
+              type="text"
+              id="change-city"
+              placeholder="search for your city"
+            />
+            <input type="submit" id="search-button" value="search" />
+          </form>
+        </h1>
+        <br />
+        <h2 id="city-name">Harare</h2>
+        <ul>
+          <li id="date-today">Monday, June 12th 2023</li>
+          <li>Windy</li>
+        </ul>
+        <div class="row">
+          <div class="col-6">☀️ 29℃</div>
 
-      <h4 class="temp"><span id="temp">☀️ 29 </span>℃</h4>
+          <div class="col-6">
+            <ul>
+              <li>Precipitation</li>
+              <li>Humidity</li>
+              <li>Wind Speed</li>
+            </ul>
+          </div>
+        </div>
 
-      <p>
+        <script src="src/index.js"></script>
+      </div>
+      <small>
         here is the link to my
         <a
           href="https://github.com/mimmuv/miriro-week6-homework"
           target="_blank"
           >GitHub repository</a
         >
-      </p>
-
-      <script src="src/index.js"></script>
+      </small>
     </div>
   </body>
 </html>
