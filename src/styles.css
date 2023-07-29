@@ -1,0 +1,33 @@
+body {
+  font-family: sans-serif;
+}
+#search-button {
+  background-color: blue;
+  color: white;
+  border-color: blue;
+  border-radius: 5px;
+  font-size: 24px;
+  cursor: pointer;
+}
+#current-city-button {
+  background-color: #43a525;
+  color: white;
+  border-color: blue;
+  border-radius: 5px;
+  font-size: 24px;
+  cursor: pointer;
+}
+div {
+  display: inline;
+  color: #7090e9;
+}
+h3 {
+  font-size: 15px;
+}
+.temp {
+  font-size: 30px;
+}
+.tempunits {
+  font-size: 30px;
+  color: #7090e9;
+}
