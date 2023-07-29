@@ -1,6 +1,13 @@
 body {
   font-family: sans-serif;
 }
+.app-box {
+  width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
 #search-button {
   background-color: blue;
   color: white;
