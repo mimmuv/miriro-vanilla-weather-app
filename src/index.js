@@ -38,6 +38,10 @@ function changeWeatherElements() {
   axios.get(`${apiURL}&appid=${apiKey}`).then(displayWeatherElements);
 }
 
+//function displayForecast() {
+
+//}
+
 ////////change date to current date
 let now = new Date();
 let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
@@ -52,3 +56,5 @@ let buttonclick = document.querySelector("#search-button");
 buttonclick.addEventListener("click", changeCity);
 buttonclick.addEventListener("click", changeCityTemperature);
 buttonclick.addEventListener("click", changeWeatherElements);
+
+//displayForecast();
