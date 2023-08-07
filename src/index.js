@@ -38,9 +38,34 @@ function changeWeatherElements() {
   axios.get(`${apiURL}&appid=${apiKey}`).then(displayWeatherElements);
 }
 
-//function displayForecast() {
+function displayForecast() {
+  let forecastElement = document.querySelector("#weekly-forecast");
+  let forecastHTML = `<div class="row">`;
+  forecastHTML =
+    forecastHTML +
+    `
 
-//}
+  <div class="col-2"> 
+
+    <div class="forecast-date"> Mon </div>
+
+<i class="fa-solid fa-cloud"></i>
+      <div class="forecat-temps">
+       <span class="min-weekly-temp">
+6º
+  </span>
+  <span class="max-weekly-temp">
+
+  27º
+
+  </span>
+</div>
+    </div>
+
+`;
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 
 ////////change date to current date
 let now = new Date();
@@ -56,5 +81,5 @@ let buttonclick = document.querySelector("#search-button");
 buttonclick.addEventListener("click", changeCity);
 buttonclick.addEventListener("click", changeCityTemperature);
 buttonclick.addEventListener("click", changeWeatherElements);
-
-//displayForecast();
+//buttonclick.addEventListener("click"), displayForecast();
+displayForecast();
