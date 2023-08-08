@@ -40,13 +40,15 @@ function changeWeatherElements() {
 function displayForecast() {
   let forecastElement = document.querySelector("#weekly-forecast");
   let forecastHTML = `<div class="row">`;
-  forecastHTML =
-    forecastHTML +
-    `
+  let days = ["Fri", "Sat"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
 
   <div class="col-2"> 
 
-    <div class="forecast-date"> Mon </div>
+    <div class="forecast-date"> ${day} </div>
 
 <i class="fa-solid fa-cloud"></i>
       <div class="forecat-temps">
@@ -62,6 +64,7 @@ function displayForecast() {
     </div>
 
 `;
+  });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
