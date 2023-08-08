@@ -13,12 +13,11 @@ function displayWeatherElements(response) {
   console.log(response);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
-  //document.querySelector("#precipitation").innerHTML = response.data.wind.speed;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
 }
 function changeCity() {
-  let apiKey = "2b619595ec626bddc557eb2d19c753c9";
+  let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
   let newcity = document.querySelector("#change-city").value;
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${newcity}&units=metric`;
   axios.get(`${apiURL}&appid=${apiKey}`).then(displayNewCity);
