@@ -49,6 +49,7 @@ function getDailyForecast(coordinates) {
 
 //display the weekly forecast
 function displayDailyForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#weekly-forecast");
   let forecastHTML = `<div class="row">`;
   let days = ["Fri", "Sat"];
