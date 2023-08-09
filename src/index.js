@@ -1,6 +1,8 @@
 ///////////change city name after searching and display current temorature
 function displayNewCity(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
+  getDailyForecast(response.data.coord);
+  displayDailyForecast();
 }
 
 function displayTemperature(response) {
@@ -10,7 +12,7 @@ function displayTemperature(response) {
 }
 
 function displayWeatherElements(response) {
-  console.log(response);
+  //console.log(response);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
   document.querySelector("#description").innerHTML =
@@ -38,7 +40,12 @@ function changeWeatherElements() {
   axios.get(`${apiURL}&appid=${apiKey}`).then(displayWeatherElements);
 }
 
-function displayForecast() {
+function getDailyForecast(coordinates) {
+  let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
+  let apiURL = `api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiURL);
+}
+function displayDailyForecast() {
   let forecastElement = document.querySelector("#weekly-forecast");
   let forecastHTML = `<div class="row">`;
   let days = ["Fri", "Sat"];
@@ -69,7 +76,7 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-displayForecast();
+
 ////////change date to current date
 let now = new Date();
 let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
