@@ -16,7 +16,8 @@ function displayWeatherElements(response) {
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
 }
-function changeCity() {
+function changeCity(event) {
+  event.preventDefault();
   let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
   let newcity = document.querySelector("#change-city").value;
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${newcity}&units=metric`;
@@ -24,14 +25,14 @@ function changeCity() {
 }
 
 function changeCityTemperature() {
-  let apiKey = "6782253072f7d90462731a624097fc54";
+  let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
   let newcity = document.querySelector("#change-city").value;
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${newcity}&units=metric`;
   axios.get(`${apiURL}&appid=${apiKey}`).then(displayTemperature);
 }
 
 function changeWeatherElements() {
-  let apiKey = "6782253072f7d90462731a624097fc54";
+  let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
   let newcity = document.querySelector("#change-city").value;
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${newcity}&units=metric`;
   axios.get(`${apiURL}&appid=${apiKey}`).then(displayWeatherElements);
@@ -68,7 +69,7 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-
+displayForecast();
 ////////change date to current date
 let now = new Date();
 let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
@@ -84,4 +85,3 @@ buttonclick.addEventListener("click", changeCity);
 buttonclick.addEventListener("click", changeCityTemperature);
 buttonclick.addEventListener("click", changeWeatherElements);
 //buttonclick.addEventListener("click"), displayForecast();
-displayForecast();
