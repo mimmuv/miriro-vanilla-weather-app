@@ -1,5 +1,6 @@
 ///////////change city name after searching and display current temorature
 function displayNewCity(response) {
+  console.log(response.data.weather[0].icon);
   document.querySelector("#city-name").innerHTML = response.data.name;
   getDailyForecast(response.data.coord);
 }
@@ -41,35 +42,37 @@ function changeWeatherElements() {
 
 //get daily forecast coordinates from the daily openweather app
 function getDailyForecast(coordinates) {
-  let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
-  let apiURL = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiKey = "1ee4264117b73d2263eecd562f31ef5c";
+  let apiURL = `http://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   console.log(apiURL);
   axios.get(apiURL).then(displayDailyForecast);
 }
 
 //display the weekly forecast
 function displayDailyForecast(response) {
-  console.log(response);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#weekly-forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Fri", "Sat"];
-  days.forEach(function (day) {
+  forecast.forEach(function (forecastDay) {
     forecastHTML =
       forecastHTML +
       `
 
   <div class="col-2"> 
 
-    <div class="forecast-date"> ${day} </div>
+    <div class="forecast-date"> ${forecastDay.dt} </div>
 
-<i class="fa-solid fa-cloud"></i>
+<img src=http://api.openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" 
+alt=""
+width="42"
+/>
       <div class="forecat-temps">
        <span class="min-weekly-temp">
-6º
+${forecastDay.temp.min}º
   </span>
   <span class="max-weekly-temp">
 
-  27º
+${forecastDay.temp.max}º
 
   </span>
 </div>
