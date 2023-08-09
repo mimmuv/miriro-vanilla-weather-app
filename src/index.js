@@ -2,7 +2,6 @@
 function displayNewCity(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
   getDailyForecast(response.data.coord);
-  displayDailyForecast();
 }
 
 function displayTemperature(response) {
@@ -40,12 +39,16 @@ function changeWeatherElements() {
   axios.get(`${apiURL}&appid=${apiKey}`).then(displayWeatherElements);
 }
 
+//get daily forecast coordinates from the daily openweather app
 function getDailyForecast(coordinates) {
   let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
   let apiURL = `api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   console.log(apiURL);
+  axios.get(apiURL).then(displayDailyForecast);
 }
-function displayDailyForecast() {
+
+//display the weekly forecast
+function displayDailyForecast(response) {
   let forecastElement = document.querySelector("#weekly-forecast");
   let forecastHTML = `<div class="row">`;
   let days = ["Fri", "Sat"];
