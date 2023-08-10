@@ -65,3 +65,7 @@ ul {
   font-size: 50px;
   font-weight: lighter;
 }
+small {
+  font-size: 10px;
+  margin-left: 10px;
+}
