@@ -7,7 +7,7 @@ body {
   padding: 20px;
   border: 2px solid #dadce0;
   border-radius: 8px;
-  background: #f3efef;
+  background: #e9f5fb;
 }
 #search-button {
   background-color: blue;
@@ -24,10 +24,7 @@ h3 {
 .temp {
   font-size: 30px;
 }
-.tempunits {
-  font-size: 30px;
-  color: #7090e9;
-}
+
 h2 {
   margin-bottom: 0;
 }
@@ -66,4 +63,5 @@ ul {
 #float-temp-units {
   vertical-align: super;
   font-size: 50px;
+  font-weight: lighter;
 }
