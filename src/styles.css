@@ -7,7 +7,7 @@ body {
   padding: 20px;
   border: 2px solid #dadce0;
   border-radius: 8px;
-  background: #a7a8a6;
+  background: #f3efef;
 }
 #search-button {
   background-color: blue;
@@ -39,7 +39,7 @@ li {
   margin: 0;
   padding: 0;
   color: #707579;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 100;
   line-height: 19px;
 }
@@ -47,9 +47,23 @@ ul {
   margin: 0;
   padding: 0;
 }
-#weekly-outlook {
-  font-style: oblique;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  font-size: 10px;
+
+#weather-elements {
+  margin-top: 20px;
+}
+
+#weekly-forecast {
+  margin-top: 20px;
+  font-size: 14px;
+}
+#temp {
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1;
+  color: black;
+}
+
+#float-temp-units {
+  vertical-align: super;
+  font-size: 50px;
 }

@@ -1,42 +1,27 @@
-///////////change city name after searching and display current temorature
-function displayNewCity(response) {
-  //console.log(response.data.weather[0].icon);
-  document.querySelector("#city-name").innerHTML = response.data.name;
-  getDailyForecast(response.data.coord);
-}
+function displayWeatherElements(response) {
+  //console.log(response);
 
-function displayTemperature(response) {
+  let iconElement = document.querySelector("#weather-icon");
   document.querySelector("#temp").innerHTML = Math.round(
     response.data.main.temp
   );
-}
 
-function displayWeatherElements(response) {
-  //console.log(response);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
-}
-function changeCity(event) {
-  event.preventDefault();
-  let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
-  let newcity = document.querySelector("#change-city").value;
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${newcity}&units=metric`;
-  axios.get(`${apiURL}&appid=${apiKey}`).then(displayNewCity);
-}
+  document.querySelector("#city-name").innerHTML = response.data.name;
 
-function changeCityTemperature() {
-  let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
-  let newcity = document.querySelector("#change-city").value;
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${newcity}&units=metric`;
-  axios.get(`${apiURL}&appid=${apiKey}`).then(displayTemperature);
+  getDailyForecast(response.data.coord);
 }
-
-function changeWeatherElements() {
+function changeCity(city) {
   let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
-  let newcity = document.querySelector("#change-city").value;
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${newcity}&units=metric`;
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
   axios.get(`${apiURL}&appid=${apiKey}`).then(displayWeatherElements);
 }
 
@@ -44,7 +29,6 @@ function changeWeatherElements() {
 function getDailyForecast(coordinates) {
   let apiKey = "1ee4264117b73d2263eecd562f31ef5c";
   let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiURL);
   axios.get(apiURL).then(displayDailyForecast);
 }
 
@@ -75,7 +59,7 @@ function displayDailyForecast(response) {
           forecastDay.weather[0].icon
         }@2x.png"
 alt=""
-width="42"
+width="30" 
 />
       <div class="forecat-temps">
        <span class="min-weekly-temp">
@@ -105,9 +89,14 @@ let currentMinutes = now.getMinutes();
 let currentDate = document.querySelector("#date-today");
 currentDate.innerHTML = `${weekDay}, ${currentHour}:${currentMinutes}`;
 
-//when search button is clicked
-let buttonclick = document.querySelector("#search-button");
-buttonclick.addEventListener("click", changeCity);
-buttonclick.addEventListener("click", changeCityTemperature);
-buttonclick.addEventListener("click", changeWeatherElements);
-//buttonclick.addEventListener("click"), displayForecast();
+//Show Harare forecast by default
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#change-city");
+  changeCity(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-city");
+form.addEventListener("submit", handleSubmit);
+
+changeCity("Harare");
