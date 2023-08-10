@@ -1,14 +1,8 @@
 ///////////change city name after searching and display current temorature
 function displayNewCity(response) {
-  console.log(response.data);
+  console.log(response.data.weather[0].icon);
   document.querySelector("#city-name").innerHTML = response.data.name;
   getDailyForecast(response.data.coord);
-  document.querySelector(
-    "#weather-icon"
-  ).innerHTML = `<img src=https://api.openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" 
-alt=""
-width="42"
-/>`;
 }
 
 function displayTemperature(response) {
@@ -18,7 +12,7 @@ function displayTemperature(response) {
 }
 
 function displayWeatherElements(response) {
-  console.log(response);
+  //console.log(response);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
   document.querySelector("#description").innerHTML =
@@ -43,7 +37,6 @@ function changeWeatherElements() {
   let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
   let newcity = document.querySelector("#change-city").value;
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${newcity}&units=metric`;
-  console.log(apiURL);
   axios.get(`${apiURL}&appid=${apiKey}`).then(displayWeatherElements);
 }
 
@@ -55,39 +48,49 @@ function getDailyForecast(coordinates) {
   axios.get(apiURL).then(displayDailyForecast);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 //display the weekly forecast
 function displayDailyForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#weekly-forecast");
   let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (forecastDay) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
 
   <div class="col-2"> 
 
-    <div class="forecast-date"> ${formatDay(forecastDay.dt * 1000)} </div>
+    <div class="forecast-date"> ${formatDay(forecastDay.dt)} </div>
 
-<img src=http://api.openweathermap.org/img/wn/${
-        forecastDay.weather[0].icon
-      }@2x.png" 
+<img src="http://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png"
 alt=""
 width="42"
 />
       <div class="forecat-temps">
        <span class="min-weekly-temp">
-${forecastDay.temp.min}º
+${Math.round(forecastDay.temp.min)}º
   </span>
   <span class="max-weekly-temp">
 
-${forecastDay.temp.max}º
+${Math.round(forecastDay.temp.max)}º
 
   </span>
 </div>
     </div>
 
 `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
