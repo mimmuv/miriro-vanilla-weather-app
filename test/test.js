@@ -1,6 +1,6 @@
 ///////////change city name after searching and display current temorature
 function displayNewCity(response) {
-  console.log(response.data.weather[0].icon);
+  //console.log(response.data.weather[0].icon);
   document.querySelector("#city-name").innerHTML = response.data.name;
   getDailyForecast(response.data.coord);
 }
@@ -43,7 +43,7 @@ function changeWeatherElements() {
 //get daily forecast coordinates from the daily openweather app
 function getDailyForecast(coordinates) {
   let apiKey = "1ee4264117b73d2263eecd562f31ef5c";
-  let apiURL = `http://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   console.log(apiURL);
   axios.get(apiURL).then(displayDailyForecast);
 }
@@ -71,7 +71,7 @@ function displayDailyForecast(response) {
 
     <div class="forecast-date"> ${formatDay(forecastDay.dt)} </div>
 
-<img src="http://openweathermap.org/img/wn/${
+<img src="https://openweathermap.org/img/wn/${
           forecastDay.weather[0].icon
         }@2x.png"
 alt=""
